@@ -1,6 +1,6 @@
 {
   "name": "@raketa-cms/raketa-menu-builder",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "Made with create-react-library",
   "author": "studioraketa",
   "license": "MIT",
@@ -51,6 +51,8 @@
     "dist"
   ],
   "dependencies": {
+    "@raketa-cms/raketa-mir": "^1.0.0",
+    "react-hook-form": "^5.4.2",
     "styled-components": "^5.1.0"
   }
 }
