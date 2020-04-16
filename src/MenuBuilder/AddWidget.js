@@ -26,9 +26,12 @@ export default ({ onAdd, onClose }) => {
       <WidgetContext.Consumer>
         {(WIDGETS) => (
           <React.Fragment>
-            {Object.keys(WIDGETS).map((w) => (
-              <WidgetButton key={w} onClick={() => onAdd(WIDGETS[w])}>
-                {WIDGETS[w].name}
+            {Object.keys(WIDGETS).map((widgetName) => (
+              <WidgetButton
+                key={widgetName}
+                onClick={() => onAdd(WIDGETS[widgetName])}
+              >
+                {widgetName}
               </WidgetButton>
             ))}
           </React.Fragment>
