@@ -1,6 +1,6 @@
 {
   "name": "@raketa-cms/raketa-menu-builder",
-  "version": "1.0.22",
+  "version": "1.0.23",
   "description": "Made with create-react-library",
   "author": "studioraketa",
   "license": "MIT",
@@ -46,13 +46,14 @@
     "prettier": "^2.0.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "^3.4.1"
+    "react-scripts": "^3.4.1",
+    "styled-components": "^5.1.0"
   },
   "files": [
     "dist"
   ],
   "dependencies": {
-    "@raketa-cms/raketa-mir": "^1.0.4",
+    "@raketa-cms/raketa-mir": "^1.0.5",
     "react-hook-form": "^5.4.2",
     "react-sortablejs": "^2.0.11"
   }
