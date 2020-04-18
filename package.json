@@ -1,6 +1,6 @@
 {
   "name": "@raketa-cms/raketa-menu-builder",
-  "version": "1.0.21",
+  "version": "1.0.22",
   "description": "Made with create-react-library",
   "author": "studioraketa",
   "license": "MIT",
@@ -24,7 +24,8 @@
     "deploy": "gh-pages -d example/build"
   },
   "peerDependencies": {
-    "react": "^16.0.0"
+    "react": "^16.0.0",
+    "styled-components": "^5.1.0"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.3",
@@ -51,9 +52,8 @@
     "dist"
   ],
   "dependencies": {
-    "@raketa-cms/raketa-mir": "^1.0.3",
+    "@raketa-cms/raketa-mir": "^1.0.4",
     "react-hook-form": "^5.4.2",
-    "react-sortablejs": "^2.0.11",
-    "styled-components": "^5.1.0"
+    "react-sortablejs": "^2.0.11"
   }
 }
