@@ -29,7 +29,7 @@ export default ({ onAdd, onClose }) => {
             {Object.keys(WIDGETS).map((widgetName) => (
               <WidgetButton
                 key={widgetName}
-                onClick={() => onAdd(WIDGETS[widgetName])}
+                onClick={() => onAdd(widgetName, WIDGETS[widgetName])}
               >
                 {widgetName}
               </WidgetButton>

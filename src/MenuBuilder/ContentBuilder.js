@@ -17,10 +17,11 @@ import {
 
 const getWidget = (widgets, name) => widgets[name]
 const getTitle = (widgets, widget) => {
-  const primaryField = getWidget(widgets, widget.name).primaryField
+  const { component } = widget
+  const primaryField = getWidget(widgets, component).primaryField
   return primaryField
-    ? `${widget.name}: ${widget.settings[primaryField]}`
-    : widget.name
+    ? `${component}: ${widget.settings[primaryField]}`
+    : component
 }
 
 export default ({ value, onChange }) => {
@@ -122,7 +123,7 @@ export default ({ value, onChange }) => {
           {widget.open && (
             <Modal title='Settings' open={widget.open} onClose={closeWidget}>
               <AdminWidget
-                Component={getWidget(WIDGETS, widget.current.name)}
+                Component={getWidget(WIDGETS, widget.current.component)}
                 settings={widget.current.settings}
                 onChange={(settings) => updateWidget(widget.current, settings)}
                 onCancel={closeWidget}
@@ -132,10 +133,10 @@ export default ({ value, onChange }) => {
 
           {open && (
             <AddWidget
-              onAdd={(widget) =>
+              onAdd={(component, widget) =>
                 addWidget(
                   state.widgets,
-                  Factories.widget(widget.name, widget.defaults)
+                  Factories.widget(component, widget.defaults)
                 )
               }
               onClose={() => setOpen(false)}

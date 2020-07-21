@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import React from 'react'
 import WidgetContext from './WidgetContext'
 import MainNavigation from './MainNavigation'

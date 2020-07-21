@@ -3,8 +3,8 @@ import styled from 'styled-components'
 import { ReactSortable } from 'react-sortablejs'
 import { append } from './utils'
 import Factories from './Factories'
-import { Plus } from './icons'
 import {
+  reset,
   Button,
   Stack,
   Container,
@@ -13,15 +13,18 @@ import {
 } from '@raketa-cms/raketa-mir'
 
 const Item = styled.div`
+  ${reset};
   display: inline-flex;
   align-items: center;
+  padding: 0;
   margin-right: 0.5em;
   border: 1px solid
     ${(props) =>
-    props.active ? props.theme.colors.primary : props.theme.colors.gray};
-  border-radius: 3px;
+      props.active ? props.theme.colors.primary : props.theme.colors.gray};
+  border-radius: 48px;
   background-color: ${(props) =>
     props.active ? props.theme.colors.primary : props.theme.colors.white};
+  font-weight: 700;
   transition: 0.1s ease-in-out all;
 
   &:hover {
@@ -31,11 +34,10 @@ const Item = styled.div`
 
 const TabButton = styled.button`
   ${buttonReset};
-  padding: 0.95em;
-  padding-left: 0;
+  padding: 0.5em 1em;
   color: ${(props) =>
     props.active ? props.theme.colors.white : props.theme.colors.black};
-  font-weight: 500;
+  font-weight: 700;
 `
 
 export default ({ items, tab, onTab, onChange }) => (
@@ -44,13 +46,11 @@ export default ({ items, tab, onTab, onChange }) => (
       <ReactSortable
         list={items}
         setList={onChange}
-        handle='.r-handle'
         direction='horizontal'
         dragoverBubble
       >
         {items.map((item, idx) => (
           <Item key={item.id} active={idx === tab}>
-            <Handle className='r-handle' active={idx === tab} />
             <TabButton
               type='button'
               active={idx === tab}
@@ -64,10 +64,9 @@ export default ({ items, tab, onTab, onChange }) => (
 
       <Button
         variant='secondary'
-        size='sm'
         onClick={() => onChange(append(items, Factories.item()))}
       >
-        <Plus />
+        Add item
       </Button>
     </Stack>
   </Container>
