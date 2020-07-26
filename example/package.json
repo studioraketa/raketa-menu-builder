@@ -5,7 +5,7 @@
   "private": true,
   "dependencies": {
     "@raketa-cms/raketa-menu-builder": "link:..",
-    "@raketa-cms/raketa-mir": "^1.1.1",
+    "@raketa-cms/raketa-mir": "^1.1.2",
     "react": "link:../node_modules/react",
     "react-dom": "link:../node_modules/react-dom",
     "react-scripts": "link:../node_modules/react-scripts"
