@@ -1,5 +1,5 @@
 import React from 'react';
-import { Input } from '@raketa-cms/raketa-mir';
+import { FormGroup, Label, Input } from '@raketa-cms/raketa-mir';
 
 const Title = ({ title }) => <h5>{title}</h5>;
 
@@ -12,11 +12,14 @@ Title.defaults = {
 Title.admin = ({ settings, onChange }) => {
   return (
     <>
-      <Input
-        name='title'
-        value={settings.title}
-        onChange={(e) => onChange('title', e.target.value)}
-      />
+      <FormGroup>
+        <Label htmlFor='title'>Title</Label>
+        <Input
+          name='title'
+          value={settings.title}
+          onChange={(e) => onChange('title', e.target.value)}
+        />
+      </FormGroup>
     </>
   );
 };

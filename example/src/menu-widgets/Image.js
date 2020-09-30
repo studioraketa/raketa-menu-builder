@@ -1,5 +1,5 @@
 import React from 'react';
-import { Select, Input } from '@raketa-cms/raketa-mir';
+import { Select, Input, FormGroup, Label } from '@raketa-cms/raketa-mir';
 
 const extractWebpPath = (path) => {
   const arrayPath = path.split('.');
@@ -24,23 +24,30 @@ Image.defaults = {
 Image.admin = ({ settings, onChange }) => {
   return (
     <>
-      <Input
-        name='image'
-        label='Image'
-        type='text'
-        value={settings.image}
-        onChange={(e) => onChange('image', e.target.value)}
-      />
+      <FormGroup>
+        <Label htmlFor='image'>Image</Label>
 
-      <Select
-        name='image'
-        value={settings.variant}
-        onChange={(e) => onChange('variant', e.target.value)}
-      >
-        <option value='lead'>Lead</option>
-        <option value='square'>Square</option>
-        <option value='card_horizontal'>Card</option>
-      </Select>
+        <Input
+          name='image'
+          type='text'
+          value={settings.image}
+          onChange={(e) => onChange('image', e.target.value)}
+        />
+      </FormGroup>
+
+      <FormGroup>
+        <Label htmlFor='variant'>Variant</Label>
+
+        <Select
+          name='variant'
+          value={settings.variant}
+          onChange={(e) => onChange('variant', e.target.value)}
+        >
+          <option value='lead'>Lead</option>
+          <option value='square'>Square</option>
+          <option value='card_horizontal'>Card</option>
+        </Select>
+      </FormGroup>
     </>
   );
 };
