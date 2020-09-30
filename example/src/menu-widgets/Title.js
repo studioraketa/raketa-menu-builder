@@ -1,9 +1,7 @@
 import React from 'react';
-import { Field } from '@raketa-cms/raketa-mir';
+import { FormGroup, Label, Input } from '@raketa-cms/raketa-mir';
 
-const Title = ({ title }) => (
-  <h5>{title}</h5>
-);
+const Title = ({ title }) => <h5>{title}</h5>;
 
 Title.primaryField = 'title';
 
@@ -11,10 +9,17 @@ Title.defaults = {
   title: 'Title',
 };
 
-Title.admin = ({ register }) => {
+Title.admin = ({ settings, onChange }) => {
   return (
     <>
-      <Field r={register} name="title" label="Title" required />
+      <FormGroup>
+        <Label htmlFor='title'>Title</Label>
+        <Input
+          name='title'
+          value={settings.title}
+          onChange={(e) => onChange('title', e.target.value)}
+        />
+      </FormGroup>
     </>
   );
 };

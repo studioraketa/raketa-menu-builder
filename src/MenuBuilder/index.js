@@ -1,40 +1,40 @@
 /* eslint-disable no-undef */
-import React from 'react'
-import WidgetContext from './WidgetContext'
-import MainNavigation from './MainNavigation'
-import ItemForm from './ItemForm'
-import RowBuilder from './RowBuilder'
-import { append, remove, update, rand } from './utils'
-import { H } from '@raketa-cms/raketa-mir'
+import React from 'react';
+import WidgetContext from './WidgetContext';
+import MainNavigation from './MainNavigation';
+import ItemForm from './ItemForm';
+import RowBuilder from './RowBuilder';
+import { append, remove, update, rand } from './utils';
+import { H } from '@raketa-cms/raketa-mir';
 
 export default ({ widgets, value, onChange }) => {
-  const [state, setState] = React.useState(value)
+  const [state, setState] = React.useState(value);
 
-  const currentTab = state.tab
-  const currentItem = state.items ? state.items[currentTab] : null
+  const currentTab = state.tab;
+  const currentItem = state.items ? state.items[currentTab] : null;
 
   const removeItem = (items, item) => {
-    if (!confirm('Are you sure?')) return
+    if (!confirm('Are you sure?')) return;
 
     const newState = {
       ...state,
       tab: 0,
       items: remove(items, item),
-    }
+    };
 
-    setState(newState)
-    if (onChange) onChange(newState)
-  }
+    setState(newState);
+    if (onChange) onChange(newState);
+  };
 
   const updateItem = (items, item) => {
     const newState = {
       ...state,
       items: update(items, item),
-    }
+    };
 
-    setState(newState)
-    if (onChange) onChange(newState)
-  }
+    setState(newState);
+    if (onChange) onChange(newState);
+  };
 
   const duplicateItem = (items, item) => {
     const newState = {
@@ -44,11 +44,11 @@ export default ({ widgets, value, onChange }) => {
         id: rand(),
         label: `${item.label} (copy)`,
       }),
-    }
+    };
 
-    setState(newState)
-    if (onChange) onChange(newState)
-  }
+    setState(newState);
+    if (onChange) onChange(newState);
+  };
 
   return (
     <WidgetContext.Provider value={widgets}>
@@ -62,10 +62,10 @@ export default ({ widgets, value, onChange }) => {
       {currentItem && (
         <div>
           <ItemForm
-            value={currentItem}
-            onChange={(item) =>
-              updateItem(state.items, { ...currentItem, ...item })
-            }
+            item={currentItem}
+            onChange={(item) => {
+              updateItem(state.items, { ...currentItem, ...item });
+            }}
             onRemove={() => removeItem(state.items, currentItem)}
             onDuplicate={() => duplicateItem(state.items, currentItem)}
           />
@@ -82,5 +82,5 @@ export default ({ widgets, value, onChange }) => {
         </div>
       )}
     </WidgetContext.Provider>
-  )
-}
+  );
+};

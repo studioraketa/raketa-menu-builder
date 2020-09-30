@@ -1,8 +1,8 @@
-import React from 'react'
-import styled from 'styled-components'
-import { ReactSortable } from 'react-sortablejs'
-import { append } from './utils'
-import Factories from './Factories'
+import React from 'react';
+import styled from 'styled-components';
+import { ReactSortable } from 'react-sortablejs';
+import { append } from './utils';
+import Factories from './Factories';
 import {
   reset,
   Button,
@@ -10,7 +10,7 @@ import {
   Container,
   Handle,
   buttonReset,
-} from '@raketa-cms/raketa-mir'
+} from '@raketa-cms/raketa-mir';
 
 const Item = styled.div`
   ${reset};
@@ -30,7 +30,7 @@ const Item = styled.div`
   &:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
   }
-`
+`;
 
 const TabButton = styled.button`
   ${buttonReset};
@@ -38,7 +38,7 @@ const TabButton = styled.button`
   color: ${(props) =>
     props.active ? props.theme.colors.white : props.theme.colors.black};
   font-weight: 700;
-`
+`;
 
 export default ({ items, tab, onTab, onChange }) => (
   <Container bottom>
@@ -70,4 +70,4 @@ export default ({ items, tab, onTab, onChange }) => (
       </Button>
     </Stack>
   </Container>
-)
+);
