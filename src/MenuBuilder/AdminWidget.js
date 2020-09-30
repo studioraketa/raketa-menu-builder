@@ -1,30 +1,29 @@
-import React, { useEffect } from 'react'
-import { useForm } from 'react-hook-form'
-import { Button } from '@raketa-cms/raketa-mir'
+import React from 'react';
+import { Button } from '@raketa-cms/raketa-mir';
 
 export default ({ Component, settings, onChange, onCancel }) => {
-  const { register, handleSubmit, setValue } = useForm({
-    defaultValues: settings,
-  })
-
-  const Form = Component.admin
-
-  useEffect(() => {
-    Object.keys(settings).forEach((k) => {
-      setValue(k, settings[k])
-    })
-  }, [settings])
+  const [state, setState] = React.useState(settings);
+  const Form = Component.admin;
 
   return (
-    <form onSubmit={handleSubmit(onChange)}>
-      <Form register={register} settings={settings} />
+    <div>
+      <Form
+        settings={state}
+        onChange={(key, value) => {
+          setState({ ...state, ...{ [key]: value } });
+        }}
+      />
 
-      <Button type='submit' variant='primary'>
+      <Button
+        type='submit'
+        variant='primary'
+        onClick={() => onChange({ ...state })}
+      >
         Save
       </Button>
       <Button variant='secondary' onClick={onCancel}>
         Cancel
       </Button>
-    </form>
-  )
-}
+    </div>
+  );
+};

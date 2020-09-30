@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react'
-import { ReactSortable } from 'react-sortablejs'
-import WidgetContext from './WidgetContext'
-import Factories from './Factories'
-import AdminWidget from './AdminWidget'
-import AddWidget from './AddWidget'
-import { remove, update } from './utils'
-import { Edit, Delete } from './icons'
+import React, { useEffect } from 'react';
+import { ReactSortable } from 'react-sortablejs';
+import WidgetContext from './WidgetContext';
+import Factories from './Factories';
+import AdminWidget from './AdminWidget';
+import AddWidget from './AddWidget';
+import { remove, update } from './utils';
+import { Edit, Delete } from './icons';
 import {
   Button,
   Stack,
@@ -13,71 +13,71 @@ import {
   Panel,
   PanelTitle,
   Modal,
-} from '@raketa-cms/raketa-mir'
+} from '@raketa-cms/raketa-mir';
 
-const getWidget = (widgets, name) => widgets[name]
+const getWidget = (widgets, name) => widgets[name];
 const getTitle = (widgets, widget) => {
-  const { component } = widget
-  const primaryField = getWidget(widgets, component).primaryField
+  const { component } = widget;
+  const primaryField = getWidget(widgets, component).primaryField;
   return primaryField
     ? `${component}: ${widget.settings[primaryField]}`
-    : component
-}
+    : component;
+};
 
 export default ({ value, onChange }) => {
   const [widget, setWidget] = React.useState({
     open: false,
     current: null,
-  })
-  const [open, setOpen] = React.useState(false)
-  const [state, setState] = React.useState(value)
+  });
+  const [open, setOpen] = React.useState(false);
+  const [state, setState] = React.useState(value);
 
   useEffect(() => {
-    setState(value)
-  }, [value])
+    setState(value);
+  }, [value]);
 
   const addWidget = (items, item) => {
     const newState = {
       ...state,
       widgets: [...items, item],
-    }
+    };
 
-    setOpen(false)
-    setState(newState)
-    onChange(newState)
-  }
+    setOpen(false);
+    setState(newState);
+    onChange(newState);
+  };
 
   const removeWidget = (items, item) => {
-    if (!confirm('Are you sure?')) return
+    if (!confirm('Are you sure?')) return;
 
     const newState = {
       ...state,
       widgets: remove(items, item),
-    }
+    };
 
-    setState(newState)
-    onChange(newState)
-  }
+    setState(newState);
+    onChange(newState);
+  };
 
   const reorder = (widgets) => {
-    const newState = { ...state, widgets }
+    const newState = { ...state, widgets };
 
-    setState(newState)
-    onChange(newState)
-  }
+    setState(newState);
+    onChange(newState);
+  };
 
-  const closeWidget = () => setWidget({ open: false, current: null })
+  const closeWidget = () => setWidget({ open: false, current: null });
 
   const updateWidget = (widget, settings) => {
     const newState = {
       ...state,
       widgets: update(state.widgets, { ...widget, settings }),
-    }
+    };
 
-    closeWidget()
-    setState(newState)
-    onChange(newState)
-  }
+    closeWidget();
+    setState(newState);
+    onChange(newState);
+  };
 
   return (
     <WidgetContext.Consumer>
@@ -145,5 +145,5 @@ export default ({ value, onChange }) => {
         </React.Fragment>
       )}
     </WidgetContext.Consumer>
-  )
-}
+  );
+};
