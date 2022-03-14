@@ -6,6 +6,7 @@ import {
   FormGroup,
   Label,
   Input,
+  Select,
   Stack,
 } from '@raketa-cms/raketa-mir';
 
@@ -22,9 +23,8 @@ export default ({ item, onChange, onRemove, onDuplicate }) => (
           value={item.label}
           onChange={(e) =>
             onChange({
-              id: item.id,
+              ...item,
               label: e.target.value,
-              url: item.url,
             })
           }
         />
@@ -39,12 +39,30 @@ export default ({ item, onChange, onRemove, onDuplicate }) => (
           value={item.url}
           onChange={(e) =>
             onChange({
-              id: item.id,
-              label: item.label,
+              ...item,
               url: e.target.value,
             })
           }
         />
+      </FormGroup>
+
+      <FormGroup>
+        <Label htmlFor='target'>Target</Label>
+
+        <Select
+          name='target'
+          value={item.target}
+          onChange={(e) =>
+            onChange({
+              ...item,
+              target: e.target.value,
+            })
+          }
+        >
+          <option value=''>Please select</option>
+          <option value='_self'>Open in same tab</option>
+          <option value='_blank'>Open in new tab</option>
+        </Select>
       </FormGroup>
     </Stack>
 

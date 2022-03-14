@@ -12,7 +12,7 @@ const Image = ({ image }) => (
   <picture>
     <source srcSet={extractWebpPath(image)} type='image/webp' />
     <source srcSet={image} />
-    <img src={image} loading='lazy' />
+    <img src={image} loading='lazy' alt='' />
   </picture>
 );
 

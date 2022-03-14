@@ -8,7 +8,6 @@ import {
   Button,
   Stack,
   Container,
-  Handle,
   buttonReset,
 } from '@raketa-cms/raketa-mir';
 

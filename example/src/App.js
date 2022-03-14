@@ -1,19 +1,19 @@
-import React from 'react'
-import { ThemeProvider } from 'styled-components'
-import { theme } from '@raketa-cms/raketa-mir'
-import { MenuBuilder } from '@raketa-cms/raketa-menu-builder'
-import WIDGETS from './menu-widgets'
+import React from 'react';
+import { ThemeProvider } from 'styled-components';
+import { theme } from '@raketa-cms/raketa-mir';
+import { MenuBuilder } from '@raketa-cms/raketa-menu-builder';
+import WIDGETS from './menu-widgets';
 
 const MegaMenu = ({ value, onChange }) => {
   const [menu, setMenu] = React.useState({
     tab: 0,
     items: value,
-  })
+  });
 
   const onUpdate = (newMenu) => {
-    setMenu(newMenu)
-    onChange(newMenu.items)
-  }
+    setMenu(newMenu);
+    onChange(newMenu.items);
+  };
 
   return (
     <>
@@ -23,15 +23,17 @@ const MegaMenu = ({ value, onChange }) => {
           value={menu}
           onChange={(newMenu) => onUpdate(newMenu)}
         />
+
+        <pre>{JSON.stringify(menu, null, 2)}</pre>
       </ThemeProvider>
     </>
-  )
-}
+  );
+};
 
 const App = () => {
-  const [value, setValue] = React.useState([])
+  const [value, setValue] = React.useState([]);
 
-  return <MegaMenu value={value} onChange={setValue} />
-}
+  return <MegaMenu value={value} onChange={setValue} />;
+};
 
-export default App
+export default App;
