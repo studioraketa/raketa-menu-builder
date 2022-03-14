@@ -8,37 +8,37 @@ import { append, remove, update, rand } from './utils';
 import { H } from '@raketa-cms/raketa-mir';
 
 export default ({ widgets, value, onChange }) => {
-  const [state, setState] = React.useState(value);
+  const currentTab = value.tab;
+  const currentItem = value.items ? value.items[currentTab] : null;
 
-  const currentTab = state.tab;
-  const currentItem = state.items ? state.items[currentTab] : null;
+  const addItem = (items) => {
+    onChange({ ...value, tab: items.length, items });
+  };
 
   const removeItem = (items, item) => {
     if (!confirm('Are you sure?')) return;
 
     const newState = {
-      ...state,
+      ...value,
       tab: 0,
       items: remove(items, item),
     };
 
-    setState(newState);
     if (onChange) onChange(newState);
   };
 
   const updateItem = (items, item) => {
     const newState = {
-      ...state,
+      ...value,
       items: update(items, item),
     };
 
-    setState(newState);
     if (onChange) onChange(newState);
   };
 
   const duplicateItem = (items, item) => {
     const newState = {
-      ...state,
+      ...value,
       items: append(items, {
         ...item,
         id: rand(),
@@ -46,17 +46,16 @@ export default ({ widgets, value, onChange }) => {
       }),
     };
 
-    setState(newState);
     if (onChange) onChange(newState);
   };
 
   return (
     <WidgetContext.Provider value={widgets}>
       <MainNavigation
-        items={state.items}
+        items={value.items}
         tab={currentTab}
-        onTab={(tab) => setState({ ...state, tab })}
-        onChange={(items) => setState({ ...state, items })}
+        onTab={(tab) => onChange({ ...value, tab })}
+        onChange={addItem}
       />
 
       {currentItem && (
@@ -64,19 +63,20 @@ export default ({ widgets, value, onChange }) => {
           <ItemForm
             item={currentItem}
             onChange={(item) => {
-              updateItem(state.items, { ...currentItem, ...item });
+              updateItem(value.items, { ...currentItem, ...item });
             }}
-            onRemove={() => removeItem(state.items, currentItem)}
-            onDuplicate={() => duplicateItem(state.items, currentItem)}
+            onRemove={() => removeItem(value.items, currentItem)}
+            onDuplicate={() => duplicateItem(value.items, currentItem)}
           />
 
           <H as='h4' size='large'>
             Menu content
           </H>
+
           <RowBuilder
             value={currentItem}
             onChange={(item) =>
-              updateItem(state.items, { ...currentItem, ...item })
+              updateItem(value.items, { ...currentItem, ...item })
             }
           />
         </div>

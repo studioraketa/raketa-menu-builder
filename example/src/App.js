@@ -4,36 +4,18 @@ import { theme } from '@raketa-cms/raketa-mir';
 import { MenuBuilder } from '@raketa-cms/raketa-menu-builder';
 import WIDGETS from './menu-widgets';
 
-const MegaMenu = ({ value, onChange }) => {
-  const [menu, setMenu] = React.useState({
+const App = () => {
+  const [value, setValue] = React.useState({
     tab: 0,
-    items: value,
+    items: [],
   });
 
-  const onUpdate = (newMenu) => {
-    setMenu(newMenu);
-    onChange(newMenu.items);
-  };
-
   return (
-    <>
-      <ThemeProvider theme={theme}>
-        <MenuBuilder
-          widgets={WIDGETS}
-          value={menu}
-          onChange={(newMenu) => onUpdate(newMenu)}
-        />
-
-        <pre>{JSON.stringify(menu, null, 2)}</pre>
-      </ThemeProvider>
-    </>
+    <ThemeProvider theme={theme}>
+      <MenuBuilder widgets={WIDGETS} value={value} onChange={setValue} />
+      <pre>{JSON.stringify(value, null, 2)}</pre>
+    </ThemeProvider>
   );
-};
-
-const App = () => {
-  const [value, setValue] = React.useState([]);
-
-  return <MegaMenu value={value} onChange={setValue} />;
 };
 
 export default App;

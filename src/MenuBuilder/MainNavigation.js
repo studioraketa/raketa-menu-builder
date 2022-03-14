@@ -49,10 +49,10 @@ export default ({ items, tab, onTab, onChange }) => (
         dragoverBubble
       >
         {items.map((item, idx) => (
-          <Item key={item.id} active={idx === tab}>
+          <Item key={item.id} active={parseInt(idx, 10) === parseInt(tab, 10)}>
             <TabButton
               type='button'
-              active={idx === tab}
+              active={parseInt(idx, 10) === parseInt(tab, 10)}
               onClick={() => onTab(idx)}
             >
               {item.label}
